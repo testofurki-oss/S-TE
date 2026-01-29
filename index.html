@@ -39,7 +39,7 @@ header {
 button {
   background: #1e90ff;
   border: none;
-  padding: 10px 16px;
+  padding: 12px 16px;
   border-radius: 8px;
   cursor: pointer;
   color: #fff;
@@ -65,6 +65,7 @@ button {
   font-size: 18px;
   letter-spacing: 3px;
   border: 1px solid #222;
+  min-height: 26px;
 }
 
 /* CATEGORIES */
@@ -116,12 +117,12 @@ button {
 <div class="card">
   <h2>🎁 DEMO TEST CODE</h2>
   <p style="font-size:13px;opacity:0.7">
-    Bu site yalnızca demo/test amaçlıdır.
+    Bu sistem yalnızca demo/test amaçlıdır.
   </p>
 
-  <div id="code" class="code">------------------</div>
+  <div id="code" class="code">Kod almadınız</div>
 
-  <button onclick="generateCode()">Test Kodunu Al</button>
+  <button id="btn" onclick="generateCode()">Test Kodunu Al</button>
 
   <div class="categories">
     <div class="cat">
@@ -134,7 +135,7 @@ button {
     </div>
     <div class="cat">
       Demo Kod<br>
-      <span class="verified">✔ Test Ortamı</span>
+      <span class="verified">✔ 24 Saat Sınırlı</span>
     </div>
     <div class="cat">
       Discord<br>
@@ -144,20 +145,65 @@ button {
 </div>
 
 <script>
+const COOLDOWN = 24 * 60 * 60 * 1000;
+const TIME_KEY = "last_time";
+const CODE_KEY = "demo_code";
+
 function generateCode() {
+  const now = Date.now();
+  const last = localStorage.getItem(TIME_KEY);
+
+  if (last && now - last < COOLDOWN) return;
+
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let result = "";
+  let code = "";
   for (let i = 0; i < 18; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
+    code += chars[Math.floor(Math.random() * chars.length)];
   }
-  document.getElementById("code").innerText = result;
+
+  localStorage.setItem(CODE_KEY, code);
+  localStorage.setItem(TIME_KEY, now);
+
+  document.getElementById("code").innerText = code;
 }
 
-// SNOW EFFECT
+function updateTimer() {
+  const last = localStorage.getItem(TIME_KEY);
+  const code = localStorage.getItem(CODE_KEY);
+  const btn = document.getElementById("btn");
+
+  if (!last) return;
+
+  const now = Date.now();
+  const remaining = COOLDOWN - (now - last);
+
+  if (remaining <= 0) {
+    btn.disabled = false;
+    btn.innerText = "Test Kodunu Al";
+    document.getElementById("code").innerText = "Yeni kod alabilirsin";
+    localStorage.removeItem(TIME_KEY);
+    localStorage.removeItem(CODE_KEY);
+    return;
+  }
+
+  btn.disabled = true;
+
+  const h = Math.floor(remaining / (1000 * 60 * 60));
+  const m = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+  const s = Math.floor((remaining % (1000 * 60)) / 1000);
+
+  btn.innerText = `${h}s ${m}dk ${s}sn`;
+  document.getElementById("code").innerText = code || "Kod alındı";
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+
+/* SNOW */
 for (let i = 0; i < 30; i++) {
   const snow = document.createElement("div");
   snow.className = "snow";
-  snow.innerHTML = "❄";
+  snow.innerText = "❄";
   snow.style.left = Math.random() * 100 + "vw";
   snow.style.fontSize = (Math.random() * 10 + 8) + "px";
   snow.style.animationDuration = (Math.random() * 6 + 6) + "s";
