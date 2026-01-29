@@ -36,14 +36,25 @@ header {
   -webkit-text-fill-color: transparent;
 }
 
+/* BUTTONS (SİYAH) */
 button {
-  background: #1e90ff;
-  border: none;
+  background: #000;
+  border: 1px solid #222;
   padding: 12px 16px;
   border-radius: 8px;
   cursor: pointer;
   color: #fff;
   font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #111;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* MAIN CARD */
@@ -122,7 +133,7 @@ button {
 
   <div id="code" class="code">Kod almadınız</div>
 
-  <button id="btn" onclick="generateCode()">Test Kodunu Al</button>
+  <button id="btn" onclick="generateCode()">Kodunuzu Alın</button>
 
   <div class="categories">
     <div class="cat">
@@ -179,8 +190,8 @@ function updateTimer() {
 
   if (remaining <= 0) {
     btn.disabled = false;
-    btn.innerText = "Test Kodunu Al";
-    document.getElementById("code").innerText = "Yeni kod alabilirsin";
+    btn.innerText = "Kodunuzu Alın";
+    document.getElementById("code").innerText = "Yeni kod alabilirsiniz";
     localStorage.removeItem(TIME_KEY);
     localStorage.removeItem(CODE_KEY);
     return;
