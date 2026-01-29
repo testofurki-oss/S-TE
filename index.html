@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>ROBLOX ÜCRETSİZ KODUNUZU ALIN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #e5e7eb;
+  --accent: #38bdf8;
+}
+
+body.light {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px;
+}
+
+button {
+  background: var(--accent);
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 420px;
+  margin: 80px auto;
+  background: var(--card);
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+
+.code {
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin: 20px 0;
+  background: #020617;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* KAR YAĞIŞI */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 10px;
+  animation: fall linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <button onclick="toggleTheme()">🌗 Tema</button>
+  <a href="https://discord.gg/9bHkahCNhh" target="_blank">
+    <button>Discord</button>
+  </a>
+</header>
+
+<div class="container">
+  <h2>🎁 ÜCRETSİZ ROBLOX ROBUX KODUNUZ</h2>
+  <p>⚠️Discord sunucumuzdan değerlendirmeyi unutnayın.</p>
+
+  <div id="code" class="code">------------------</div>
+
+  <button onclick="generateCode()">Test Kodunu Al</button>
+</div>
+
+<script>
+function generateCode() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let code = "";
+  for (let i = 0; i < 18; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  document.getElementById("code").innerText = code;
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+/* KAR YAĞIŞI */
+for (let i = 0; i < 40; i++) {
+  let snow = document.createElement("div");
+  snow.className = "snow";
+  snow.innerText = "❄";
+  snow.style.left = Math.random() * 100 + "vw";
+  snow.style.animationDuration = (Math.random() * 5 + 5) + "s";
+  snow.style.fontSize = (Math.random() * 10 + 8) + "px";
+  document.body.appendChild(snow);
+}
+</script>
+
+</body>
+</html>
