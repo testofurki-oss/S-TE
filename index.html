@@ -2,173 +2,197 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Ücretsiz Robux Kodunuz.</title>
+<title>ÖDÜLÜNÜZÜ ALIN.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{
-  margin:0;
-  background:#000;
-  color:#fff;
-  overflow:hidden;
+:root {
+  --bg: #000000;
+  --card: #0b0b0b;
+  --border: #1f1f1f;
+  --text: #e5e7eb;
+  --green: #22c55e;
 }
 
-/* KAR YAĞIŞI */
-.snow{
-  position:fixed;
-  top:-10px;
-  color:#fff;
-  opacity:.6;
-  animation:fall linear infinite;
-}
-@keyframes fall{
-  to{transform:translateY(110vh)}
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* ÜST BAR */
-.top{
-  position:absolute;
-  top:20px;
-  left:20px;
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:2px;
-  animation:glow 2s infinite alternate;
-}
-@keyframes glow{
-  from{text-shadow:0 0 5px red}
-  to{text-shadow:0 0 15px red}
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0a0a0a, #000);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
-.discord{
-  position:absolute;
-  top:20px;
-  right:20px;
-}
-.discord a{
-  background:#000;
-  border:1px solid #222;
-  padding:10px 16px;
-  color:#fff;
-  text-decoration:none;
-  border-radius:8px;
-}
-.discord a:hover{background:#111}
-
-/* KART */
-.card{
-  width:360px;
-  background:#0b0b0b;
-  border-radius:16px;
-  padding:25px;
-  text-align:center;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  box-shadow:0 0 40px rgba(0,0,0,.9);
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
 }
 
-.code{
-  background:#000;
-  padding:14px;
-  border-radius:10px;
-  margin:15px 0;
-  letter-spacing:3px;
-  font-weight:bold;
+.logo {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ff0000,
+    #ff0000 10px,
+    #ffffff 10px,
+    #ffffff 20px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255,255,255,0.2);
 }
 
-button{
-  width:100%;
-  background:#000;
-  color:#fff;
-  border:1px solid #222;
-  padding:14px;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:15px;
-}
-button:hover{background:#111}
-
-.info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:15px;
-}
-.info div{
-  background:#000;
-  padding:10px;
-  border-radius:10px;
-  font-size:13px;
+header button {
+  background: #111;
+  border: 1px solid var(--border);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.footer{
-  margin-top:20px;
-  font-size:11px;
-  color:#888;
+/* MAIN */
+.container {
+  max-width: 460px;
+  margin: 60px auto;
+  background: linear-gradient(180deg, #0b0b0b, #050505);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0,0,0,0.9);
+}
+
+.code {
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin: 20px 0;
+  background: #000;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.main-btn {
+  background: #000;
+  color: #fff;
+  border: 1px solid var(--border);
+  padding: 14px;
+  width: 100%;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.main-btn:hover { background:#111 }
+
+/* CATEGORIES */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.cat {
+  background: #050505;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: left;
+}
+
+.verified {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* SNOW */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 10px;
+  opacity: 0.4;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh); }
 }
 </style>
 </head>
+
 <body>
 
-<div class="top">ROBLOX SAHİBİNDEN <span style="font-size:14px;color:#aaa">(DEMO)</span></div>
+<header>
+  <div class="logo">ROBLOX SAHİBİNDEN <span style="font-size:14px">Resmi Sitesi.</span></div>
+  <a href="https://discord.gg/9bHkahCNhh" target="_blank">
+    <button>Discord</button>
+  </a>
+</header>
 
-<div class="discord">
-  <a href="https://discord.gg/9bHkahCNhh" target="_blank">Discord</a>
-</div>
+<div class="container">
+  <h2>🎁 ÜCRETSİZ ÖDÜLÜNÜZÜ ALIN!</h2>
+  <p style="font-size:13px;opacity:.7">Bu Sistem Root11x Ve YokVuraman Tarafından Yapılmıştır.</p>
 
-<div class="card">
-  <h3>🎁 DEMO TEST CODE</h3>
-  <p style="font-size:13px;color:#aaa">Bu sistem yalnızca demo/test amaçlıdır.</p>
+  <div id="code" class="code">------------------</div>
+  <button class="main-btn" onclick="generateCode()">KODUNUZU ALIN!</button>
 
-  <div id="code" class="code">***************</div>
-  <button onclick="getCode()">Kodunuzu Alın</button>
-
-  <div class="info">
-    <div>✔ Giveaway<br><span style="color:#0f0">Doğrulanmış (Demo)</span></div>
-    <div>✔ Profil<br><span style="color:#0f0">Güvenli Sistem</span></div>
-    <div>✔ Demo Kod<br><span style="color:#0f0">24 Saat Sınırlı</span></div>
-    <div>✔ Site<br><span style="color:#0f0">Resmi Görünümlü</span></div>
+  <div class="categories">
+    <div class="cat"><strong>Giveaway</strong><br><span class="verified">✔ ROBLOX</span></div>
+    <div class="cat"><strong>Profil</strong><br><span class="verified">✔ SAHİBİNDEN</span></div>
+    <div class="cat"><strong>Demo Kod</strong><br><span class="verified">✔ ONAYLI</span></div>
+    <div class="cat"><strong>Discord</strong><br><span class="verified">✔ RESMİ SİTESİ.</span></div>
   </div>
 
-  <div class="footer">
-    Devlet onaylı **görünümlü** demo arayüzdür.<br>
-    Gerçek Robux / resmi Roblox bağlantısı yoktur.<br>
-    Gizlilik hakları saklıdır.
-  </div>
+  <p style="font-size:11px;opacity:.5;margin-top:20px">
+    Devlet Onaylı Roblox Sahibinden Resmi Sitesidir,  Gizlilik hakları saklıdır.
+  </p>
 </div>
 
 <script>
 /* RANDOM 18 HANELİ KOD */
-function randomCode(){
-  const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let c="";
-  for(let i=0;i<18;i++) c+=chars[Math.floor(Math.random()*chars.length)];
-  return c;
+function randomCode() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let code = "";
+  for (let i = 0; i < 18; i++) {
+    code += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return code;
 }
 
-/* 24 SAAT KURAL */
-function getCode(){
-  const last=localStorage.getItem("lastCodeTime");
-  const now=Date.now();
-  if(last && now-last<86400000){
-    alert("Bu kodu 24 saatte bir alabilirsiniz.");
+/* 24 SAAT SINIRI */
+function generateCode() {
+  const last = localStorage.getItem("lastCodeTime");
+  const now = Date.now();
+
+  if (last && now - last < 86400000) {
+    const kalan = Math.ceil((86400000 - (now - last)) / 3600000);
+    alert("Bu kodu tekrar almak için " + kalan + " saat beklemelisin.");
     return;
   }
-  document.getElementById("code").innerText=randomCode();
-  localStorage.setItem("lastCodeTime",now);
+
+  document.getElementById("code").innerText = randomCode();
+  localStorage.setItem("lastCodeTime", now);
 }
 
 /* KAR */
-for(let i=0;i<35;i++){
-  let s=document.createElement("div");
-  s.className="snow";
-  s.innerHTML="❄";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=(5+Math.random()*5)+"s";
-  s.style.fontSize=(8+Math.random()*8)+"px";
+for (let i = 0; i < 35; i++) {
+  const s = document.createElement("div");
+  s.className = "snow";
+  s.innerText = "❄";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.animationDuration = (Math.random() * 6 + 6) + "s";
+  s.style.fontSize = (Math.random() * 10 + 8) + "px";
   document.body.appendChild(s);
 }
 </script>
