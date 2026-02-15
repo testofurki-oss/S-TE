@@ -1,213 +1,397 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>ÖDÜLÜNÜZÜ ALIN.</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-:root {
-  --bg: #000000;
-  --card: #0b0b0b;  
-  --border: #1f1f1f;
-  --text: #e5e7eb;
-  --green: #22c55e;
-}
-
-* {
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, #0a0a0a, #000);
-  color: var(--text);
-  overflow-x: hidden;
-}
-
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 30px;
-}
-
-.logo {
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  background: repeating-linear-gradient(
-    45deg,
-    #ff0000,
-    #ff0000 10px,
-    #ffffff 10px,
-    #ffffff 20px
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-header button {
-  background: #111;
-  border: 1px solid var(--border);
-  color: white;
-  padding: 10px 16px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-/* MAIN */
-.container {
-  max-width: 460px;
-  margin: 60px auto;
-  background: linear-gradient(180deg, #0b0b0b, #050505);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 30px;
-  text-align: center;
-}
-
-.code {
-  font-size: 20px;
-  letter-spacing: 3px;
-  margin: 20px 0;
-  background: #000;
-  padding: 14px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
-
-.main-btn {
-  background: #000;
-  color: #fff;
-  border: 1px solid var(--border);
-  padding: 14px;
-  width: 100%;
-  border-radius: 12px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.main-btn:hover { background:#111 }
-
-/* CATEGORIES */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-top: 30px;
-}
-
-.cat {
-  background: #050505;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 14px;
-  text-align: left;
-}
-
-.verified {
-  color: var(--green);
-  font-size: 13px;
-  font-weight: bold;
-}
-
-/* SNOW */
-.snow {
-  position: fixed;
-  top: -10px;
-  color: white;
-  font-size: 10px;
-  opacity: 0.4;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  to { transform: translateY(110vh); }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox External Hile - Smooth & Karanlık Tema</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            animation: bgPulse 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes bgPulse {
+            0% { background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0a0a0a 100%); }
+            100% { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%); }
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid #00ff00;
+            animation: slideDown 1s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        nav a:hover {
+            background: #00ff00;
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00ff00;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .center-section {
+            margin: 50px 0;
+            animation: floatUp 2s ease-out;
+        }
+        
+        @keyframes floatUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .discord-btn, .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        .discord-btn {
+            background: linear-gradient(45deg, #5865f2, #7289da);
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
+        }
+        
+        .discord-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.8);
+        }
+        
+        .download-btn {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.8);
+        }
+        
+        /* Giriş ve Kayıt Formları */
+        .auth-section {
+            display: none;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+            border: 1px solid #333;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .auth-section.active {
+            display: block;
+        }
+        
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #fff;
+            transition: border 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: #00ff00;
+            outline: none;
+            box-shadow: 0 0 10px #00ff00;
+        }
+        
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: #00ff00;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        button[type="submit"]:hover {
+            background: #00cc00;
+        }
+        
+        /* Profil Bölümü */
+        .profile-section {
+            display: none;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 500px;
+            border: 1px solid #333;
+        }
+        
+        .profile-section.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            background: #333;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 2px solid #00ff00;
+        }
+        
+        /* FAQ Bölümü */
+        .faq-section {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: left;
+        }
+        
+        .faq-item {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid #00ff00;
+            transition: transform 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .faq-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .faq-item h3 {
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .discord-btn, .download-btn { display: block; margin: 10px auto; }
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <h1>Roblox External Hile</h1>
+        <p>Smooth ve Güçlü Hile Deneyimi – Discord'a Katıl!</p>
+        <nav>
+            <a href="#" onclick="showSection('home')">Ana Sayfa</a>
+            <a href="#" onclick="showSection('login')">Giriş Yap</a>
+            <a href="#" onclick="showSection('register')">Kayıt Ol</a>
+            <a href="#" onclick="showSection('profile')">Profil</a>
+            <a href="#" onclick="showSection('faq')">FAQ</a>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <!-- Ana Sayfa -->
+        <div id="home" class="center-section active">
+            <h2>Discord Sunucumuza Katıl!</h2>
+            <p>Toplulukla sohbet et, güncellemeleri takip et.</p>
+            <a href="https://discord.gg/B6JwevJkhe" target="_blank" class="discord-btn">Discord'a Katıl</a>
+            
+            <h2 style="margin-top: 50px;">Hileyi İndir</h2>
+            <p>En son sürümü hemen indir ve Roblox'u domine et!</p>
+            <a href="https://dosya.co/8f3m3425nt6c/anotherfuckasscentrumpaste.rar.html" target="_blank" class="download-btn">İndir (RAR)</a>
+        </div>
+        
+        <!-- Giriş Formu -->
+        <div id="login" class="auth-section">
+            <h3>Giriş Yap</h3>
+            <form onsubmit="handleLogin(event); return false;">
+                <input type="text" placeholder="Kullanıcı Adı" required>
+                <input type="password" placeholder="Şifre" required>
+                <button type="submit">Giriş Yap</button>
+            </form>
+            <p style="margin-top: 10px; font-size: 0.9em;">Hesabın yok mu? <a href="#" onclick="showSection('register')">Kayıt ol</a></p>
+        </div>
+        
+        <!-- Kayıt Formu -->
+        <div id="register" class="auth-section">
+            <h3>Hesap Oluştur</h3>
+            <form onsubmit="handleRegister(event); return false;">
+                <input type="text" placeholder="Kullanıcı Adı" required>
+                <input type="email" placeholder="E-posta" required>
+                <input type="password" placeholder="Şifre" required>
+                <button type="submit">Kayıt Ol</button>
+            </form>
+            <p style="margin-top: 10px; font-size: 0.9em;">Zaten hesabın var mı? <a href="#" onclick="showSection('login')">Giriş yap</a></p>
+        </div>
+        
+        <!-- Profil -->
+        <div id="profile" class="profile-section">
+            <h3>Profilin</h3>
+            <div class="profile-pic"></div>
+            <p><strong>Kullanıcı Adı:</strong> <span id="username">Misafir</span></p>
+            <p><strong>E-posta:</strong> <span id="email">email@ornek.com</span></p>
+            <input type="file" id="profileUpload" accept="image/*" style="margin-top: 10px;">
+            <button onclick="updateProfile()" style="width: auto; padding: 5px 10px; margin-top: 10px;">Profili Güncelle</button>
+        </div>
+        
+        <!-- FAQ -->
+        <div id="faq" class="faq-section">
+            <h2>Hile Özellikleri (FAQ)</h2>
+            <div class="faq-item">
+                <h3>Aimbot</h3>
+                <p>Otomatik nişan alma ile rakiplerini kolayca vur. Smooth ve hassas ayarlar ile %100 isabet!</p>
+            </div>
+            <div class="faq-item">
+                <h3>ESP (Extra Sensory Perception)</h3>
+                <p>Düşmanları duvar arkasından gör. İsim, sağlık ve mesafe bilgisi dahil tam ESP paketi.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Speed Hack</h3>
+                <p>Hızını artır ve haritayı domine et. Ayarlanabilir hız seviyeleriyle risksiz kullanım.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Wallhack</h3>
+                <p>Duvarları şeffaf hale getir. Klasik wallhack ile her şeyi gör ve strateji kur.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Anti-Ban</h3>
+                <p>Algılanma riskini minimuma indir. Güncel bypass'lar ile ban yeme derdi yok!</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Roblox External Hile. Tüm hakları saklıdır. | <a href="https://discord.gg/B6JwevJkhe" style="color: #5865f2;">Discord</a></p>
+    </footer>
 
-<header>
-  <div class="logo">ROBLOX SAHİBİNDEN <span style="font-size:14px">Resmi Sitesi</span></div>
-  <a href="https://discord.gg/9bHkahCNhh" target="_blank">
-    <button>Discord</button>
-  </a>
-</header>
-
-<div class="container">
-  <h2>🎁 ÜCRETSİZ ÖDÜLÜNÜZÜ ALIN!</h2>
-  <p style="font-size:13px;opacity:.7">Bu sistem demo/test amaçlıdır.</p>
-
-  <div id="code" class="code">KOD BEKLENİYOR...</div>
-  <button class="main-btn" onclick="generateCode()">KODUNUZU ALIN!</button>
-
-  <div class="categories">
-    <div class="cat"><strong>Giveaway</strong><br><span class="verified">✔ Doğrulanmış</span></div>
-    <div class="cat"><strong>Profil</strong><br><span class="verified">✔ Güvenli</span></div>
-    <div class="cat"><strong>Demo Kod</strong><br><span class="verified">✔ 24 Saat</span></div>
-    <div class="cat"><strong>Discord</strong><br><span class="verified">✔ Resmi Sunucu</span></div>
-  </div>
-
-  <p style="font-size:11px;opacity:.5;margin-top:20px">
-    Devlet onaylı demo sistemidir. Gizlilik hakları saklıdır.
-  </p>
-</div>
-
-<script>
-/* RANDOM 18 HANELİ KOD */
-function randomCode() {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let code = "";
-  for (let i = 0; i < 18; i++) {
-    code += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return code;
-}
-
-/* 24 SAAT SINIRI */
-function generateCode() {
-  const last = localStorage.getItem("lastCodeTime");
-  const now = Date.now();
-
-  if (last && now - last < 86400000) {
-    const kalan = Math.ceil((86400000 - (now - last)) / 3600000);
-    alert("Tekrar kod almak için " + kalan + " saat beklemelisin.");
-    return;
-  }
-
-  document.getElementById("code").innerText = randomCode();
-  localStorage.setItem("lastCodeTime", now);
-}
-
-/* KAR */
-for (let i = 0; i < 35; i++) {
-  const s = document.createElement("div");
-  s.className = "snow";
-  s.innerText = "❄";
-  s.style.left = Math.random() * 100 + "vw";
-  s.style.animationDuration = (Math.random() * 6 + 6) + "s";
-  s.style.fontSize = (Math.random() * 10 + 8) + "px";
-  document.body.appendChild(s);
-}
-</script>
-
-<!-- Start of Tawk.to Script -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/697b4535111a7519800fde84/1jg4ocmob';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!-- End of Tawk.to Script -->
-
+    <script>
+        let currentUser = { username: 'Misafir', email: 'email@ornek.com' };
+        
+        function showSection(sectionId) {
+            // Tüm bölümleri gizle
+            document.querySelectorAll('.center-section, .auth-section, .profile-section, .faq-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Seçiliyi göster
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active');
+            }
+            
+            // Profil için veri yükle
+            if (sectionId === 'profile') {
+                document.getElementById('username').textContent = currentUser.username;
+                document.getElementById('email').textContent = currentUser.email;
+            }
+        }
+        
+        function handleLogin(event) {
+            const username = event.target.querySelector('input[type="text"]').value;
+            if (username) {
+                currentUser.username = username;
+                alert('Giriş başarılı! Hoş geldin, ' + username + '!');
+                showSection('profile');
+            }
+        }
+        
+        function handleRegister(event) {
+            const username = event.target.querySelector('input[type="text"]').value;
+            const email = event.target.querySelector('input[type="email"]').value;
+            if (username && email) {
+                currentUser.username = username;
+                currentUser.email = email;
+                alert('Kayıt başarılı! Şimdi giriş yapabilirsin.');
+                showSection('login');
+            }
+        }
+        
+        function updateProfile() {
+            const fileInput = document.getElementById('profileUpload');
+            if (fileInput.files[0]) {
+                alert('Profil resmi güncellendi! (Gerçekte sunucuya yüklenmedi – demo modu)');
+            } else {
+                alert('Lütfen bir resim seçin.');
+            }
+        }
+        
+        // Varsayılan olarak ana sayfayı göster
+        showSection('home');
+    </script>
 </body>
 </html>
