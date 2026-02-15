@@ -4,74 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calestial · Roblox External</title>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: #030303;
-            color: #f0f0f0;
+            background: #000000;
+            color: #fff;
             min-height: 100vh;
             position: relative;
-            opacity: 0;
-            animation: bodyFade 1.2s ease forwards;
+            overflow-x: hidden;
         }
-        @keyframes bodyFade { to { opacity: 1; } }
 
-        /* ------ ANİMASYONLU KARE ARKA PLAN (grid + particles) ------ */
-        .animated-grid {
+        /* ANİMASYONLU KARE ARKA PLAN */
+        .grid-background {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                linear-gradient(rgba(10, 10, 20, 0.92), rgba(0, 0, 0, 0.98)),
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 2px, rgba(0, 255, 255, 0.03) 4px),
-                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 0, 255, 0.03) 2px, rgba(255, 0, 255, 0.03) 4px);
-            background-size: cover, 40px 40px, 40px 40px;
-            z-index: -2;
-            animation: gridShift 16s linear infinite;
-        }
-        @keyframes gridShift {
-            0% { background-position: 0 0, 0 0, 0 0; }
-            100% { background-position: 0 0, 40px 40px, 40px 40px; }
-        }
-        /* ekstra parıltılar (particle) */
-        .grid-particles {
-            position: fixed;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.03) 0%, transparent 20%),
-                        radial-gradient(circle at 80% 70%, rgba(200,220,255,0.04) 0%, transparent 30%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)),
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0, 255, 255, 0.1) 50px, rgba(0, 255, 255, 0.1) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255, 0, 255, 0.1) 50px, rgba(255, 0, 255, 0.1) 51px);
             z-index: -1;
-            animation: breathe 8s ease-in-out infinite;
-        }
-        @keyframes breathe {
-            0%,100% { opacity: 0.4; } 50% { opacity: 0.8; }
+            animation: moveGrid 20s linear infinite;
         }
 
-        /* container */
+        @keyframes moveGrid {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 0 0, 100px 100px, 100px 100px; }
+        }
+
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 30px;
+            padding: 20px;
             position: relative;
-            z-index: 5;
+            z-index: 1;
         }
 
-        /* ------ HEADER (logo + nav) ------ */
+        /* HEADER */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 20px;
-            backdrop-filter: blur(2px);
         }
 
         .logo-container {
@@ -79,464 +66,556 @@
             align-items: center;
             gap: 15px;
         }
+
         .logo-img {
-            width: 52px;
-            height: 52px;
+            width: 60px;
+            height: 60px;
             background: url('https://i.pinimg.com/736x/0a/71/24/0a71241fd16da558e431e4b0fc00eab7.jpg') no-repeat center;
             background-size: contain;
-            filter: drop-shadow(0 0 8px cyan) brightness(1.1);
-            transition: transform 0.3s ease;
-            image-rendering: crisp-edges; /* keskin gözükmesi için */
-        }
-        .logo-img:hover {
-            transform: scale(1.08) rotate(1deg);
-        }
-        .logo-text {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, #ffffff, #b0b0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px #4a4aff66;
+            filter: drop-shadow(0 0 10px #00ffff);
+            border-radius: 50%;
+            transition: transform 0.3s;
         }
 
-        /* navigasyon butonları (gerçek çalışır) */
-        .nav-links {
+        .logo-img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-buttons {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             flex-wrap: wrap;
         }
+
         .nav-btn {
-            background: rgba(15, 20, 30, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(120, 180, 255, 0.2);
-            color: #eee;
-            padding: 10px 24px;
-            border-radius: 40px;
+            background: rgba(20, 20, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.5);
-        }
-        .nav-btn i { font-size: 1rem; color: #8ab2ff; }
-        .nav-btn:hover {
-            background: rgba(40, 60, 100, 0.8);
-            border-color: #5f9eff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,160,255,0.2);
         }
 
-        /* PROFİL PANELİ (canlı) */
-        .profile-panel {
-            background: rgba(8, 12, 24, 0.7);
+        .nav-btn i {
+            color: #00ffff;
+        }
+
+        .nav-btn:hover {
+            background: rgba(40, 40, 80, 0.9);
+            border-color: #00ffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        /* PROFİL PANELİ */
+        .profile-section {
+            background: rgba(10, 10, 20, 0.8);
             backdrop-filter: blur(20px);
-            border-radius: 60px;
-            padding: 12px 25px 12px 18px;
-            margin: 30px 0 20px;
-            border: 1px solid rgba(90, 170, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 100px;
+            padding: 15px 30px;
+            margin: 20px 0 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
-        .profile-left {
+
+        .profile-info {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
         }
-        .profile-avatar {
-            width: 58px; height: 58px;
-            background: #1e1e3a;
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            border: 2px solid #7aa5ff;
-            box-shadow: 0 0 15px #3f7eff;
+            font-size: 2.5rem;
+            color: white;
+            border: 3px solid white;
             overflow: hidden;
-            transition: 0.2s;
         }
-        .profile-avatar img {
-            width: 100%; height: 100%; object-fit: cover;
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        .avatar-placeholder {
-            color: white; 
-            background: linear-gradient(145deg, #23234d, #0c0c24);
-            width: 100%; height: 100%;
-            display: flex; align-items: center; justify-content: center;
+
+        .user-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
         }
-        .profile-info h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-        .profile-info p {
-            color: #aac8ff;
-            font-size: 0.9rem;
+
+        .user-details p {
+            color: #00ffff;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
         }
+
         .profile-actions {
             display: flex;
-            gap: 12px;
+            gap: 15px;
         }
-        .small-btn {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
+            padding: 10px 25px;
+            border-radius: 50px;
             cursor: pointer;
+            transition: all 0.3s;
             font-size: 0.9rem;
-            transition: 0.2s;
         }
-        .small-btn:hover {
-            background: #2a3f6e;
-            border-color: #7aa5ff;
+
+        .action-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
         }
+
         .logout-btn {
-            background: rgba(180, 60, 60, 0.2);
-            border-color: rgba(255, 100, 100, 0.3);
+            background: rgba(255, 0, 0, 0.1);
+            border-color: rgba(255, 0, 0, 0.3);
         }
-        .logout-btn:hover { background: #8f3a3a; }
+
+        .logout-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: red;
+        }
 
         /* İNDİRME ALANI */
-        .download-zone {
+        .download-area {
             text-align: center;
-            padding: 70px 20px;
+            padding: 80px 20px;
             margin: 30px 0 50px;
-            background: rgba(2, 8, 18, 0.65);
-            backdrop-filter: blur(16px);
-            border-radius: 70px;
-            border: 1px solid rgba(100, 180, 255, 0.15);
-            box-shadow: 0 30px 50px #00000080;
-            animation: float 3s infinite alternate;
-        }
-        @keyframes float {
-            0% { transform: translateY(0); box-shadow: 0 20px 40px black; }
-            100% { transform: translateY(-6px); box-shadow: 0 35px 60px #0055ff20; }
-        }
-        .download-zone h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, #aabbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        .download-link {
-            display: inline-block;
-            background: linear-gradient(145deg, #14233c, #030711);
-            color: white;
-            padding: 22px 80px;
-            border-radius: 70px;
-            font-size: 2rem;
-            font-weight: bold;
-            text-decoration: none;
-            border: 1px solid #6f9eff;
-            box-shadow: 0 0 30px #0044ff80;
-            margin: 30px 0 15px;
-            transition: all 0.2s;
-        }
-        .download-link:hover {
-            background: #1e3155;
-            box-shadow: 0 0 50px #3f7eff;
-            transform: scale(1.02);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 60px;
+            animation: glowPulse 3s infinite;
         }
 
-        /* ÖZELLİKLER & FAQ GRID */
-        .grid-2 {
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 50px rgba(0, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 100px rgba(0, 255, 255, 0.4); }
+        }
+
+        .download-area h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #fff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: black;
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 25px 80px;
+            border-radius: 60px;
+            text-decoration: none;
+            margin: 30px 0;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.5);
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.8);
+        }
+
+        /* GRID İÇERİK */
+        .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            margin: 60px 0;
+            margin: 50px 0;
         }
-        @media (max-width:700px){ .grid-2 { grid-template-columns:1fr; } }
-        .glass-card {
-            background: rgba(3, 10, 22, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(70, 140, 255, 0.2);
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
             border-radius: 40px;
-            padding: 35px;
-            transition: 0.2s;
+            padding: 40px;
+            transition: all 0.3s;
         }
-        .glass-card:hover {
-            border-color: #4d8cff;
-            box-shadow: 0 0 35px #003b8b33;
+
+        .card:hover {
+            border-color: #00ffff;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 255, 255, 0.2);
         }
-        .glass-card h2 {
+
+        .card h2 {
             font-size: 2rem;
-            margin-bottom: 25px;
-            border-bottom: 2px solid rgba(100, 160, 255, 0.2);
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
             padding-bottom: 15px;
-        }
-        .feature-list li {
-            list-style: none;
-            margin: 18px 0;
             display: flex;
             align-items: center;
             gap: 15px;
-            font-size: 1.15rem;
         }
-        .feature-list i.fa-check-circle { color: #3aff9e; }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+
+        .feature-item i {
+            color: #00ffff;
+            font-size: 1.3rem;
+        }
+
         .faq-item {
             margin: 25px 0;
         }
+
         .faq-question {
-            color: white;
-            font-weight: 600;
             display: flex;
-            gap: 10px;
             align-items: center;
-        }
-        .faq-answer {
-            color: #b0b0b0;
-            padding-left: 28px;
+            gap: 10px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #00ffff;
         }
 
-        /* footer */
+        .faq-answer {
+            color: #aaa;
+            padding-left: 30px;
+        }
+
+        /* DISCORD BUTONU */
+        .discord-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: #5865F2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 10px 40px #5865F2;
+            animation: bounce 2s infinite;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .discord-button:hover {
+            transform: scale(1.1);
+            background: #4752c4;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
         footer {
             text-align: center;
             padding: 40px 0;
-            color: #5a6e8a;
-            border-top: 1px solid rgba(80,140,255,0.1);
-        }
-
-        /* discord sabit */
-        .discord-float {
-            position: fixed;
-            bottom: 30px; right: 30px;
-            z-index: 99;
-        }
-        .discord-icon {
-            background: #5865f2;
-            width: 65px; height: 65px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center; justify-content: center;
-            font-size: 2.5rem;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 10px 30px #2443ff;
-            transition: all 0.2s;
-            animation: discordPop 2s infinite;
-        }
-        @keyframes discordPop {
-            0%,100%{ transform:scale(1); } 50%{ transform:scale(1.1); }
+            color: #666;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="animated-grid"></div>
-    <div class="grid-particles"></div>
+    <div class="grid-background"></div>
 
-    <!-- Discord fixed -->
-    <div class="discord-float">
-        <a href="https://discord.gg/B6JwevJkhe" target="_blank" class="discord-icon"><i class="fab fa-discord"></i></a>
-    </div>
+    <!-- DISCORD BUTONU -->
+    <a href="https://discord.gg/B6JwevJkhe" target="_blank" class="discord-button">
+        <i class="fab fa-discord"></i>
+    </a>
 
     <div class="container">
-        <!-- HEADER (logo + nav) -->
+        <!-- HEADER -->
         <header>
             <div class="logo-container">
-                <div class="logo-img" title="Calestial logo"></div>
+                <div class="logo-img"></div>
                 <span class="logo-text">CALESTIAL</span>
             </div>
-            <div class="nav-links">
-                <button class="nav-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
-                <button class="nav-btn" id="registerBtn"><i class="fas fa-user-plus"></i> Kayıt Ol</button>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="showLogin()">
+                    <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                </button>
+                <button class="nav-btn" onclick="showRegister()">
+                    <i class="fas fa-user-plus"></i> Kayıt Ol
+                </button>
             </div>
         </header>
 
-        <!-- PROFİL ALANI (dinamik) -->
-        <div class="profile-panel" id="profilePanel" style="display: none;">
-            <div class="profile-left">
-                <div class="profile-avatar" id="avatarContainer">
-                    <div id="avatarImg" class="avatar-placeholder"><i class="fas fa-user-astronaut"></i></div>
+        <!-- PROFİL BÖLÜMÜ (başlangıçta gizli) -->
+        <div class="profile-section" id="profileSection" style="display: none;">
+            <div class="profile-info">
+                <div class="avatar" id="avatar">
+                    <div id="avatarContent"><i class="fas fa-user-astronaut"></i></div>
                 </div>
-                <div class="profile-info">
-                    <h3 id="profileUsername">Kullanıcı</h3>
-                    <p><i class="fas fa-crown" style="color: gold;"></i> <span id="profileRank">Üye</span> · <span id="profileExp">0 exp</span></p>
+                <div class="user-details">
+                    <h3 id="username">Kullanıcı Adı</h3>
+                    <p><i class="fas fa-crown"></i> <span id="userRank">Üye</span> • <span id="userExp">0 EXP</span></p>
                 </div>
             </div>
             <div class="profile-actions">
-                <button class="small-btn" id="changeAvatarBtn"><i class="fas fa-camera"></i> Resim değiştir</button>
-                <button class="small-btn logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
+                <button class="action-btn" onclick="changeAvatar()">
+                    <i class="fas fa-camera"></i> Avatar
+                </button>
+                <button class="action-btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Çıkış
+                </button>
             </div>
         </div>
 
-        <!-- İNDİRME MERKEZİ -->
-        <div class="download-zone">
-            <h2>CALESTIAL EXTERNAL V3</h2>
-            <p style="color: #aaccff; letter-spacing: 1px;">⚡ smooth aimbot · ESP · tamamen ücretsiz</p>
-            <a href="https://dosya.co/8f3m3425nt6c/anotherfuckasscentrumpaste.rar.html" target="_blank" class="download-link">
-                <i class="fas fa-download"></i> HEMEN İNDİR
+        <!-- İNDİRME ALANI -->
+        <div class="download-area">
+            <h1>CALESTIAL V4</h1>
+            <p style="color: #00ffff; font-size: 1.2rem; letter-spacing: 2px;">⚡ UNDETECTED • SMOOTH AIMBOT • ESP ⚡</p>
+            <a href="https://dosya.co/8f3m3425nt6c/anotherfuckasscentrumpaste.rar.html" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i> İNDİR
             </a>
-            <p style="color:#6a7e9e"><i class="fas fa-shield-alt"></i> son güncelleme: bu gece · undetected</p>
+            <p style="color: #888;"><i class="fas fa-shield-alt"></i> Son Güncelleme: 2025 • 0/70 Detected</p>
         </div>
 
-        <!-- GRID: ÖZELLİKLER / SSS -->
-        <div class="grid-2">
-            <div class="glass-card">
-                <h2><i class="fas fa-bolt" style="color: #7aa5ff;"></i> Hile Özellikleri</h2>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check-circle"></i> <strong>Aimbot</strong> – smooth, rastgele hassasiyet, FOV</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>ESP (Box / Tracer)</strong> – duvar arkası görüntüle</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Triggerbot / Silent aim</strong></li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Wallhack / Fullbright</strong></li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Speed modifier & Fly (experimental)</strong></li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Anti-afk / Spoofer</strong></li>
-                </ul>
+        <!-- ÖZELLİKLER VE FAQ -->
+        <div class="content-grid">
+            <!-- Features -->
+            <div class="card">
+                <h2><i class="fas fa-cog"></i> HİLE ÖZELLİKLERİ</h2>
+                <div class="feature-item">
+                    <i class="fas fa-crosshairs"></i>
+                    <span><strong>Aimbot</strong> – Smooth, FOV, Rastgele hassasiyet</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-eye"></i>
+                    <span><strong>ESP</strong> – Box, Tracer, Distance, Health</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-magic"></i>
+                    <span><strong>Wallhack</strong> – Duvarların arkasını gör</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bolt"></i>
+                    <span><strong>Triggerbot</strong> – Anında ateş</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-sun"></i>
+                    <span><strong>Fullbright</strong> – Her yer aydınlık</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span><strong>Speed Hack</strong> – Hızlı koş, zıpla</span>
+                </div>
             </div>
-            <div class="glass-card">
-                <h2><i class="fas fa-question-circle"></i> S.S.S</h2>
+
+            <!-- FAQ -->
+            <div class="card">
+                <h2><i class="fas fa-question-circle"></i> SIKÇA SORULANLAR</h2>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-circle-right" style="color:#5f9eff;"></i> Ban riski?</div>
-                    <div class="faq-answer">External olduğu için çok düşük, yine de gizli kullanın.</div>
+                    <div class="faq-question">
+                        <i class="fas fa-chevron-right"></i> Ban yeme riski?
+                    </div>
+                    <div class="faq-answer">External olduğu için tespit edilmesi çok zordur. Yine de gizli kullanın.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-circle-right" style="color:#5f9eff;"></i> Kurulum?</div>
-                    <div class="faq-answer">Rar’dan çıkar → loader.exe yönetici çalıştır → Roblox'u aç, Insert menü.</div>
+                    <div class="faq-question">
+                        <i class="fas fa-chevron-right"></i> Nasıl kurulur?
+                    </div>
+                    <div class="faq-answer">RAR'dan çıkar, Loader.exe'yi yönetici olarak çalıştır, Roblox'u aç ve INSERT tuşuna bas.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-circle-right" style="color:#5f9eff;"></i> Güncelleme?</div>
-                    <div class="faq-answer">Roblox güncellemesinden sonraki 12 saat içinde yeni sürüm.</div>
+                    <div class="faq-question">
+                        <i class="fas fa-chevron-right"></i> Güncelleme geliyor mu?
+                    </div>
+                    <div class="faq-answer">Her Roblox güncellemesinden sonra 24 saat içinde yeni sürüm yayınlanır.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question"><i class="fas fa-chevron-circle-right" style="color:#5f9eff;"></i> Ücretli mi?</div>
-                    <div class="faq-answer">Şu anlık bedava! Discord’a katıl, destek ol.</div>
+                    <div class="faq-question">
+                        <i class="fas fa-chevron-right"></i> Ücretli mi?
+                    </div>
+                    <div class="faq-answer">Tamamen ÜCRETSİZ! Discord'a katılarak destek olabilirsin.</div>
                 </div>
             </div>
         </div>
 
-        <!-- alt bilgi -->
         <footer>
-            <p>© 2025 Calestial · Roblox ile bağlantısı yoktur · sadece eğlence</p>
+            <p>© 2025 Calestial • Roblox ile bağlantılı değildir • Tüm hakları saklıdır</p>
         </footer>
     </div>
 
-    <!-- ========== GERÇEK HESAP SİSTEMİ (localStorage) ========== -->
     <script>
-        (function() {
-            // DOM elemanları
-            const loginBtn = document.getElementById('loginBtn');
-            const registerBtn = document.getElementById('registerBtn');
-            const profilePanel = document.getElementById('profilePanel');
-            const profileUsername = document.getElementById('profileUsername');
-            const profileRank = document.getElementById('profileRank');
-            const profileExp = document.getElementById('profileExp');
-            const avatarContainer = document.getElementById('avatarContainer');
-            const avatarImg = document.getElementById('avatarImg');
-            const changeAvatarBtn = document.getElementById('changeAvatarBtn');
-            const logoutBtn = document.getElementById('logoutBtn');
+        // KULLANICI SİSTEMİ - ÇALIŞIR DURUMDA
+        let currentUser = null;
 
-            // Varsayılan avatar iconu
-            function updateAvatarDisplay(avatarData) {
-                if (avatarData && avatarData.startsWith('data:image')) {
-                    avatarImg.innerHTML = `<img src="${avatarData}" alt="avatar" style="width:100%;height:100%;object-fit:cover;">`;
-                } else {
-                    avatarImg.className = 'avatar-placeholder';
-                    avatarImg.innerHTML = '<i class="fas fa-user-astronaut"></i>';
-                }
+        // Sayfa yüklendiğinde oturum kontrolü
+        window.onload = function() {
+            const savedUser = localStorage.getItem('calestial_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateProfileDisplay();
+            }
+        };
+
+        // Giriş yap
+        function showLogin() {
+            const username = prompt("Kullanıcı adınız:");
+            if (!username) return;
+            
+            const password = prompt("Şifreniz:");
+            if (!password) return;
+
+            const users = JSON.parse(localStorage.getItem('calestial_users') || '{}');
+            
+            if (users[username] && users[username].password === password) {
+                currentUser = {
+                    username: username,
+                    rank: users[username].rank || 'Üye',
+                    exp: users[username].exp || 0,
+                    avatar: users[username].avatar || null
+                };
+                localStorage.setItem('calestial_user', JSON.stringify(currentUser));
+                updateProfileDisplay();
+                alert('Başarıyla giriş yaptınız!');
+            } else {
+                alert('Hatalı kullanıcı adı veya şifre!');
+            }
+        }
+
+        // Kayıt ol
+        function showRegister() {
+            const username = prompt("Kullanıcı adı (en az 3 karakter):");
+            if (!username || username.length < 3) {
+                alert('Kullanıcı adı en az 3 karakter olmalı!');
+                return;
             }
 
-            // Oturum kontrolü
-            function checkSession() {
-                const user = JSON.parse(localStorage.getItem('calestial_user'));
-                if (user && user.username) {
-                    profileUsername.innerText = user.username;
-                    profileRank.innerText = user.rank || 'Üye';
-                    profileExp.innerText = (user.exp || 0) + ' exp';
-                    if (user.avatar) {
-                        avatarImg.innerHTML = `<img src="${user.avatar}" style="width:100%;height:100%;object-fit:cover;">`;
-                    } else {
-                        avatarImg.className = 'avatar-placeholder';
-                        avatarImg.innerHTML = '<i class="fas fa-user-astronaut"></i>';
-                    }
-                    profilePanel.style.display = 'flex';
-                } else {
-                    profilePanel.style.display = 'none';
-                }
+            const password = prompt("Şifre (en az 4 karakter):");
+            if (!password || password.length < 4) {
+                alert('Şifre en az 4 karakter olmalı!');
+                return;
             }
 
-            // Kayıt
-            registerBtn.addEventListener('click', () => {
-                const username = prompt('Kullanıcı adı (en az 3 harf):');
-                if (!username || username.length < 2) return alert('Geçersiz ad');
-                const password = prompt('Şifre (en az 4 karakter):');
-                if (!password || password.length < 3) return alert('Geçersiz şifre');
+            let users = JSON.parse(localStorage.getItem('calestial_users') || '{}');
+            
+            if (users[username]) {
+                alert('Bu kullanıcı adı zaten alınmış!');
+                return;
+            }
 
-                let users = JSON.parse(localStorage.getItem('calestial_users')) || {};
-                if (users[username]) return alert('Bu kullanıcı zaten var!');
-                users[username] = { password: password, rank: 'Üye', exp: 0, avatar: null };
+            users[username] = {
+                password: password,
+                rank: 'Üye',
+                exp: 0,
+                avatar: null
+            };
+
+            localStorage.setItem('calestial_users', JSON.stringify(users));
+            
+            // Otomatik giriş yap
+            currentUser = {
+                username: username,
+                rank: 'Üye',
+                exp: 0,
+                avatar: null
+            };
+            localStorage.setItem('calestial_user', JSON.stringify(currentUser));
+            updateProfileDisplay();
+            alert('Kayıt başarılı! Hoş geldiniz.');
+        }
+
+        // Avatar değiştir
+        function changeAvatar() {
+            if (!currentUser) {
+                alert('Önce giriş yapmalısınız!');
+                return;
+            }
+
+            const avatarUrl = prompt("Avatar URL'si girin (https://... veya base64):");
+            if (!avatarUrl) return;
+
+            currentUser.avatar = avatarUrl;
+            localStorage.setItem('calestial_user', JSON.stringify(currentUser));
+
+            // Users veritabanını da güncelle
+            let users = JSON.parse(localStorage.getItem('calestial_users') || '{}');
+            if (users[currentUser.username]) {
+                users[currentUser.username].avatar = avatarUrl;
                 localStorage.setItem('calestial_users', JSON.stringify(users));
+            }
 
-                // otomatik giriş yaptır
-                localStorage.setItem('calestial_user', JSON.stringify({ username: username, rank: 'Üye', exp: 0, avatar: null }));
-                checkSession();
-                alert('Kayıt başarılı, otomatik giriş yapıldı.');
-            });
+            updateProfileDisplay();
+        }
 
-            // Giriş
-            loginBtn.addEventListener('click', () => {
-                const username = prompt('Kullanıcı adı:');
-                if (!username) return;
-                const password = prompt('Şifre:');
-                if (!password) return;
+        // Çıkış yap
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('calestial_user');
+            document.getElementById('profileSection').style.display = 'none';
+        }
 
-                const users = JSON.parse(localStorage.getItem('calestial_users')) || {};
-                if (users[username] && users[username].password === password) {
-                    localStorage.setItem('calestial_user', JSON.stringify({ 
-                        username: username, 
-                        rank: users[username].rank || 'Üye', 
-                        exp: users[username].exp || 0,
-                        avatar: users[username].avatar || null
-                    }));
-                    checkSession();
-                    alert('Hoş geldin, ' + username);
-                } else {
-                    alert('Hatalı kullanıcı adı veya şifre.');
-                }
-            });
+        // Profil görüntüsünü güncelle
+        function updateProfileDisplay() {
+            if (!currentUser) return;
 
-            // Çıkış
-            logoutBtn.addEventListener('click', () => {
-                localStorage.removeItem('calestial_user');
-                checkSession();
-            });
+            const profileSection = document.getElementById('profileSection');
+            const usernameEl = document.getElementById('username');
+            const userRankEl = document.getElementById('userRank');
+            const userExpEl = document.getElementById('userExp');
+            const avatarContent = document.getElementById('avatarContent');
 
-            // Avatar değiştir
-            changeAvatarBtn.addEventListener('click', () => {
-                const user = JSON.parse(localStorage.getItem('calestial_user'));
-                if (!user) return alert('Önce giriş yap');
-                const avatarUrl = prompt('Avatar resim URL\'si (jpg/png) veya base64 verisi:\nÖrnek: https://...resim.jpg');
-                if (!avatarUrl) return;
-                // basit bir kabul, herhangi bir string kaydedilir
-                user.avatar = avatarUrl;
-                localStorage.setItem('calestial_user', JSON.stringify(user));
+            usernameEl.textContent = currentUser.username;
+            userRankEl.textContent = currentUser.rank || 'Üye';
+            userExpEl.textContent = (currentUser.exp || 0) + ' EXP';
 
-                // users listesine de kaydet
-                const users = JSON.parse(localStorage.getItem('calestial_users')) || {};
-                if (users[user.username]) {
-                    users[user.username].avatar = avatarUrl;
-                    localStorage.setItem('calestial_users', JSON.stringify(users));
-                }
-                checkSession();
-            });
+            if (currentUser.avatar) {
+                avatarContent.innerHTML = `<img src="${currentUser.avatar}" style="width:100%; height:100%; object-fit:cover;">`;
+            } else {
+                avatarContent.innerHTML = '<i class="fas fa-user-astronaut"></i>';
+            }
 
-            // Sayfa açılışında kontrol
-            checkSession();
-
-            // ekstra: profil düzeni korunsun diye (manuel avatar güncelleme)
-        })();
+            profileSection.style.display = 'flex';
+        }
     </script>
 </body>
 </html>
